@@ -14,13 +14,22 @@ import com.example.sbs.cuni.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@RequestMapping("article/list")
 	public String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
-		
+
 		model.addAttribute("articles", articles);
-		
+
 		return "article/list";
+	}
+
+	@RequestMapping("article/detail")
+	public String showDetail(Model model, int id) {
+		Article article = articleService.getArticle(id);
+
+		model.addAttribute("article", article);
+
+		return "article/detail";
 	}
 }
