@@ -17,8 +17,8 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("article/list")
-	public String showList(Model model) {
-		List<Article> articles = articleService.getArticles();
+	public String showList(Model model, String boardCode) {
+		List<Article> articles = articleService.getArticles(boardCode);
 
 		model.addAttribute("articles", articles);
 
@@ -33,17 +33,17 @@ public class ArticleController {
 
 		return "article/detail";
 	}
-	
+
 	@RequestMapping("article/doDelete")
 	public String doDelete(Model model, int id) {
 		Map<String, Object> rs = articleService.deleteArticle(id);
-		
-		String msg = (String)rs.get("msg");
+
+		String msg = (String) rs.get("msg");
 		String redirectUrl = "/article/list";
-		
+
 		model.addAttribute("alertMsg", msg);
 		model.addAttribute("locationReplace", redirectUrl);
-		
+
 		return "common/redirect";
 	}
 }
