@@ -194,7 +194,8 @@
 	function ArticleReply__loadList() {
 		$.get('./getForPrintArticleRepliesRs', {
 			id : param.id,
-			from : ArticleReply__lastLoadedArticleReplyId + 1
+			from : ArticleReply__lastLoadedArticleReplyId + 1,
+			ajax : 'Y'
 		}, function(data) {
 			data.articleReplies = data.articleReplies.reverse();
 
